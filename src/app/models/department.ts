@@ -5,11 +5,11 @@ export class Department {
 
     id: number;
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
-    code: String;
+    code: string;
 
     graduationProjectHours: number;
 

@@ -2,9 +2,9 @@ import { Course } from './course';
 
 export class Program {
     id: number;
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
     hours: number;
 

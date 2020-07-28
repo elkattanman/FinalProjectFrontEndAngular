@@ -5,9 +5,9 @@ export class Role {
 
     id: number;
 
-    name: String;
+    name: string;
 
-    discription: String;
+    discription: string;
 
     createTime: Date;
 

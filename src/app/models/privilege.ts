@@ -4,7 +4,7 @@ export class Privilege {
 
     id: number;
 
-    name: String;
+    name: string;
 
     createTime: Date;
 

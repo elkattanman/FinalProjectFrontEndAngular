@@ -89,55 +89,55 @@ export class AddTermComponent implements OnInit {
     }
   }
 
-  isHovered(date: NgbDate): void {
+  isHovered(date: NgbDate): boolean {
     return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
   }
 
-  isHovered1(date: NgbDate): void {
+  isHovered1(date: NgbDate): boolean {
     return this.fromDateRegister && !this.toDateRegister && this.hoveredDateRegister && date.after(this.fromDateRegister) && date.before(this.hoveredDateRegister);
   }
 
-  isHovered2(date: NgbDate): void{
+  isHovered2(date: NgbDate): boolean{
     return this.fromDateUpdate && !this.toDateUpdate && this.hoveredDateUpdate && date.after(this.fromDateUpdate) && date.before(this.hoveredDateUpdate);
   }
 
-  isHovered3(date: NgbDate): void {
+  isHovered3(date: NgbDate): boolean {
     return this.fromDateDelete && !this.toDateDelete && this.hoveredDateDelete && date.after(this.fromDateDelete) && date.before(this.hoveredDateDelete);
   }
 
 
-  isInside(date: NgbDate): void {
+  isInside(date: NgbDate): boolean {
     return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
   }
 
-  isInside1(date: NgbDate): void {
+  isInside1(date: NgbDate): boolean {
     return this.toDateRegister && date.after(this.fromDateRegister) && date.before(this.toDateRegister);
   }
 
-  isInside2(date: NgbDate): void {
+  isInside2(date: NgbDate): boolean {
     return this.toDateUpdate && date.after(this.fromDateUpdate) && date.before(this.toDateUpdate);
   }
 
-  isInside3(date: NgbDate): void {
+  isInside3(date: NgbDate): boolean {
     return this.toDateDelete && date.after(this.fromDateDelete) && date.before(this.toDateDelete);
   }
 
-  isRange(date: NgbDate): void {
+  isRange(date: NgbDate): boolean {
     return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date)
     || this.isHovered(date);
   }
 
-  isRange1(date: NgbDate): void {
+  isRange1(date: NgbDate): boolean {
     return date.equals(this.fromDateRegister) || (this.toDateRegister && date.equals(this.toDateRegister))
     || this.isInside1(date) || this.isHovered1(date);
   }
 
-  isRange2(date: NgbDate): void {
+  isRange2(date: NgbDate): boolean {
     return date.equals(this.fromDateUpdate) || (this.toDateUpdate && date.equals(this.toDateUpdate))
     || this.isInside2(date) || this.isHovered2(date);
   }
 
-  isRange3(date: NgbDate): void {
+  isRange3(date: NgbDate): boolean {
     return date.equals(this.fromDateDelete) || (this.toDateDelete && date.equals(this.toDateDelete))
     || this.isInside3(date) || this.isHovered3(date);
   }

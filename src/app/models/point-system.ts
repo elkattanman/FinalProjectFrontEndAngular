@@ -1,9 +1,9 @@
 
 export class PointSystem {
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
     degreeLow: number;
 

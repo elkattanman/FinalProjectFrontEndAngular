@@ -8,25 +8,25 @@ export class TeachingStaff {
 
     id: number;
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
-    img: String;
+    img: string;
 
-     nationality: String;
+     nationality: string;
 
     gender: Gender;
 
-    religion: String;
+    religion: string;
 
     DOB: Date;
 
-    nationalId: String;
+    nationalId: string;
 
-    email: String;
+    email: string;
 
-    phdDegree: String;
+    phdDegree: string;
 
     user: User;
 

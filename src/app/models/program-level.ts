@@ -2,9 +2,9 @@ export class ProgramLevel {
 
     id: number;
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
     minHours: number;
 }

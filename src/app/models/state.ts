@@ -4,15 +4,15 @@ import { Country } from './country';
 export class State {
     id: number;
 
-    name: String;
+    name: string;
 
     country: Country;
 
-    countryCode: String;
+    countryCode: string;
 
-    fipsCode: String;
+    fipsCode: string;
 
-    iso2: String;
+    iso2: string;
 
     createdAt: Date;
 
@@ -20,7 +20,7 @@ export class State {
 
     flag: boolean;
 
-    wikiDataId: String;
+    wikiDataId: string;
 
     cities: City;
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService } from 'src/app/services/global.service';
 import { ThrowStmt } from '@angular/compiler';
 
 declare var jQuery: any;
@@ -14,9 +13,7 @@ export class RegisterCourseComponent implements OnInit {
   courses: Course[];
   selected;
   cells: Cell[][];
-  constructor(
-    public gl: GlobalService
-    ) {
+  constructor() {
       this.selected = new Array();
       this.cells = [];
       for (let i = 0 ; i < 8 ; ++i){
@@ -33,9 +30,7 @@ export class RegisterCourseComponent implements OnInit {
       new Course('CS60', 'Java', false, 'Dr Hamdi', 4, 2),
       new Course('CS70', 'TypeScript', false, 'Dr fawzy', 1, 3),
       new Course('CS80', 'Android', false, 'Dr smsm', 2, 1),
-      new Course('CS90', 'Web Develop', false, 'Dr Hamdi', 2, 2)
-  ];
-    this.gl.page = 'RegisterCourse';
+      new Course('CS90', 'Web Develop', false, 'Dr Hamdi', 2, 2) ];
     (function($) {
       $(document).ready(function(){
         $('.duallistbox').bootstrapDualListbox();
@@ -45,7 +40,7 @@ export class RegisterCourseComponent implements OnInit {
     })(jQuery);
   }
 
-  onSelect(value: Course){
+  onSelect(value: Course): void{
     this.selected.push(value);
     this.courses = this.courses.filter((element) => {
           return !(value.code === element.code);
@@ -54,7 +49,7 @@ export class RegisterCourseComponent implements OnInit {
     this.cells[value.day][value.time].course = value;
   }
 
-  onDselect(value: Course){
+  onDselect(value: Course): void{
     this.courses.push(value);
     this.selected = this.selected.filter((element) => {
       return !(value.code === element.code);

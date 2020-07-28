@@ -4,23 +4,23 @@ import { State } from './state';
 export class Country {
 
     id: number;
-    name: String;
+    name: string;
 
-    iso3: String;
+    iso3: string;
 
-    iso2: String;
+    iso2: string;
 
-    phoneCode: String;
+    phoneCode: string;
 
-    capital: String;
+    capital: string;
 
-    currency: String;
+    currency: string;
 
-    nativ: String;
+    nativ: string;
 
-    emoji: String;
+    emoji: string;
 
-    emojiU: String;
+    emojiU: string;
 
     createdAt: Date;
 
@@ -28,7 +28,7 @@ export class Country {
 
     flag: boolean;
 
-    wikiDataId: String;
+    wikiDataId: string;
 
     states: State[];
 

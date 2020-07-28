@@ -12,31 +12,31 @@ export class Student {
 
     id: number;
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
-    img: String;
+    img: string;
 
-    nationality: String;
+    nationality: string;
 
     gender: Gender;
 
-    religion: String;
+    religion: string;
 
     DOB: Date;
 
-    nationalId: String;
+    nationalId: string;
 
-    guardianName: String;
+    guardianName: string;
 
-    GuardianJob: String;
+    GuardianJob: string;
 
-    email: String;
+    email: string;
 
-    secSchool: String;
+    secSchool: string;
 
-    preQualfication: String;
+    preQualfication: string;
 
     QuilificationYear: Date;
 

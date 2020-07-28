@@ -6,13 +6,13 @@ export class User {
 
     id: number;
 
-    name: String;
+    name: string;
 
-    username: String;
+    username: string;
 
-    email: String;
+    email: string;
 
-    password: String;
+    password: string;
 
     enabled: boolean;
 

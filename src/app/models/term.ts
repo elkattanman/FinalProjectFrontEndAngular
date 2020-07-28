@@ -6,9 +6,9 @@ import { Transaction } from './transaction';
 export class Term {
     id: number;
 
-     nameEnglish: String;
+     nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
     termType: TermType;
 

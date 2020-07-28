@@ -3,11 +3,11 @@ import { Department } from './department';
 
 export class Course {
 
-    code: String;
+    code: string;
 
-    nameEnglish: String;
+    nameEnglish: string;
 
-    nameArabic: String;
+    nameArabic: string;
 
     hours: number;
 
