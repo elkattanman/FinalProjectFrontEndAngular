@@ -1,0 +1,168 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Courses info.</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item "><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">Courses</li>
+                        <li class="breadcrumb-item active">information</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4>Term Data</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Name English</label>
+                                <input type="text" class="form-control" id="nameEnglish" placeholder="Name English">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">الاسم باللغه العربيه</label>
+                                <input type="text" class="form-control" id="nameArabic"
+                                    placeholder="الاسم باللغه العربيه">
+                            </div>
+                        </div>
+                        <hr>
+                        <fieldset class="form-group">
+                            <div class="form-row">
+                                <label class="col-form-label col-md-2">Term Type </label>
+                                <div class="col-md-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                            value="option1" checked>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Regular Term | ترم نظامى
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                            value="option2">
+                                        <label class="form-check-label" for="gridRadios2">
+                                            Summer Term | ترم صيفى
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <hr>
+                        <fieldset class="form-group">
+                            <legend>Start & End date for term</legend>
+
+                            <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="6"
+                                [dayTemplate]="t" outsideDays="hidden">
+                            </ngb-datepicker>
+
+                            <ng-template #t let-date let-focused="focused">
+                                <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                    (mouseleave)="hoveredDate = null">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </fieldset>
+
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-4" style="border-left: blue;">
+                                <fieldset class="form-group">
+                                    <legend>Start & End Register date</legend>
+                                    <ngb-datepicker #dp1 (dateSelect)="onDateSelection1($event)" [displayMonths]="2"
+                                        [dayTemplate]="t1" outsideDays="hidden">
+                                    </ngb-datepicker>
+
+                                    <ng-template #t1 let-date let-focused="focused">
+                                        <span class="custom-day" [class.focused]="focused"
+                                            [class.range]="isRange1(date)"
+                                            [class.faded]="isHovered1(date) || isInside1(date)"
+                                            (mouseenter)="hoveredDateRegister = date"
+                                            (mouseleave)="hoveredDateRegister = null">
+                                            {{ date.day }}
+                                        </span>
+                                    </ng-template>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group col-md-4" style="border-left: blue;">
+                                <fieldset class="form-group">
+                                    <legend>Start & End Update/Delete date</legend>
+                                    <ngb-datepicker #dp2 (dateSelect)="onDateSelection2($event)" [displayMonths]="2"
+                                        [dayTemplate]="t2" outsideDays="hidden">
+                                    </ngb-datepicker>
+
+                                    <ng-template #t2 let-date let-focused="focused">
+                                        <span class="custom-day" [class.focused]="focused"
+                                            [class.range]="isRange2(date)"
+                                            [class.faded]="isHovered2(date) || isInside2(date)"
+                                            (mouseenter)="hoveredDateUpdate = date"
+                                            (mouseleave)="hoveredDateUpdate = null">
+                                            {{ date.day }}
+                                        </span>
+                                    </ng-template>
+                                </fieldset>
+                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+
+                            <div class="form-group col-md-4" style="border-left: blue;">
+                                <fieldset class="form-group">
+                                    <legend>Start & End Withdrawn date</legend>
+                                    <ngb-datepicker #dp3 (dateSelect)="onDateSelection3($event)" [displayMonths]="2"
+                                        [dayTemplate]="t3" outsideDays="hidden">
+                                    </ngb-datepicker>
+
+                                    <ng-template #t3 let-date let-focused="focused">
+                                        <span class="custom-day" [class.focused]="focused"
+                                            [class.range]="isRange3(date)"
+                                            [class.faded]="isHovered3(date) || isInside3(date)"
+                                            (mouseenter)="hoveredDateDelete = date"
+                                            (mouseleave)="hoveredDateDelete = null">
+                                            {{ date.day }}
+                                        </span>
+                                    </ng-template>
+                                </fieldset>
+                            </div>
+
+
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4>Courses in Term</h4>
+                </div>
+                <div class="card-body">
+                    <h6>add courses that allow to student in term:</h6>
+                    ngb
+                </div>
+            </div>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4>Second</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Second</h5>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+</div>

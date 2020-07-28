@@ -1,0 +1,214 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Course Registeration</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item "><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">Course</li>
+                        <li class="breadcrumb-item active">Register</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Registeration</h3>
+                </div>
+                <form class="form" role="form">
+                    <div class="card-body">
+                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Term</th>
+                                        <th>min hour</th>
+                                        <th>max hour</th>
+                                        <th>Selected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2020/2021</td>
+                                        <td>2</td>
+                                        <td>9</td>
+                                        <td>18</td>
+                                        <td class="bg-success" [ngClass]='{"bg-danger" : selected.length>2}'>
+                                            {{selected.length}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" style="height: 20%;">
+                            <!-- <select class="duallistbox" multiple="multiple">
+                                    <option *ngFor="let course of courses" 
+                                        [(disabled)]='course.isForced'
+                                        [(selected)]='course.isForced' 
+                                        (click)="onChange(1)" >{{course.code+'-'+course.name+'-'+course.doctor}}
+                                    </option>
+                                    <option selected>Fawzy</option>
+                                </select> -->
+                            <div class="card card-primary col-md-6 float-sm-right">
+                                <div class="card-header">
+                                    <h3 class="card-title">All courses</h3>
+                                </div>
+                                <div class="card-body" style="overflow: auto;height: 150px;">
+                                    <p style="border-bottom:#ccc dotted ;" *ngFor="let course of courses"
+                                        (click)="onSelect(course)">
+                                        {{course.code+'-'+course.name+'-'+course.doctor}} </p>
+                                </div>
+                            </div>
+
+                            <div class="card card-primary col-md-6 float-sm-right">
+                                <div class="card-header">
+                                    <h3 class="card-title">Selected</h3>
+                                </div>
+                            <div class="card-body" style="overflow: auto;height: 150px;">
+                                <p style="border-bottom:#ccc dotted ;" *ngFor="let course of selected"
+                                    (click)="onDselect(course)">
+                                    {{course.code+'-'+course.name+'-'+course.doctor}}
+                                </p>
+                            </div>
+                            </div>
+
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">#</th>
+                                        <th style="width: 23.75%;">1</th>
+                                        <th style="width: 23.75%;">2</th>
+                                        <th style="width: 23.75%;">3</th>
+                                        <th style="width: 23.75%;">4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SAT</td>
+                                        <td [ngClass]='{"bg-success" : cells[1][1].flag==true}'>
+                                            {{cells[1][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[1][2].flag==true}'>
+                                            {{cells[1][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[1][3].flag==true}'>
+                                            {{cells[1][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[1][4].flag==true}'>
+                                            {{cells[1][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SUN</td>
+                                        <td [ngClass]='{"bg-success" : cells[2][1].flag==true}'>
+                                            {{cells[2][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[2][2].flag==true}'>
+                                            {{cells[2][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[2][3].flag==true}'>
+                                            {{cells[2][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[2][4].flag==true}'>
+                                            {{cells[2][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MON</td>
+                                        <td [ngClass]='{"bg-success" : cells[3][1].flag==true}'>
+                                            {{cells[3][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[3][2].flag==true}'>
+                                            {{cells[3][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[3][3].flag==true}'>
+                                            {{cells[3][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[3][4].flag==true}'>
+                                            {{cells[3][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TUES</td>
+                                        <td [ngClass]='{"bg-success" : cells[4][1].flag==true}'>
+                                            {{cells[4][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[4][2].flag==true}'>
+                                            {{cells[4][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[4][3].flag==true}'>
+                                            {{cells[4][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[4][4].flag==true}'>
+                                            {{cells[4][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WENS</td>
+                                        <td [ngClass]='{"bg-success" : cells[5][1].flag==true}'>
+                                            {{cells[5][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[5][2].flag==true}'>
+                                            {{cells[5][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[5][3].flag==true}'>
+                                            {{cells[5][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[5][4].flag==true}'>
+                                            {{cells[5][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>THRS</td>
+                                        <td [ngClass]='{"bg-success" : cells[6][1].flag==true}'>
+                                            {{cells[6][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[6][2].flag==true}'>
+                                            {{cells[6][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[6][3].flag==true}'>
+                                            {{cells[6][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[6][4].flag==true}'>
+                                            {{cells[6][4].course.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FRI</td>
+                                        <td [ngClass]='{"bg-success" : cells[7][1].flag==true}'>
+                                            {{cells[7][1].course.name}} </td>
+                                        <td [ngClass]='{"bg-success" : cells[7][2].flag==true}'>
+                                            {{cells[7][2].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[7][3].flag==true}'>
+                                            {{cells[7][3].course.name}}</td>
+                                        <td [ngClass]='{"bg-success" : cells[7][4].flag==true}'>
+                                            {{cells[7][4].course.name}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modal-default">save</button>
+                    </div>
+                    <!-- Model -->
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Are u want to save</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="Password">Password</label>
+                                        <input type="password" class="form-control" id="Password"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </form>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
