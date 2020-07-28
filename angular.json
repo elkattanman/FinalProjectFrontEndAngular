@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FrontEndNG"
+    }
+  },
+  "defaultProject": "FrontEndNG",
+  "cli": {
+    "analytics": "648160d7-5abc-4623-b929-6b2fbbe458c1"
+  }
 }
