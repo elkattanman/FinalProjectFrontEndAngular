@@ -1,20 +1,21 @@
 import { Course } from './course';
 
 export class Program {
-    id: number;
-    nameEnglish: string;
+    constructor(
+    id: number,
+    nameEnglish: string,
 
-    nameArabic: string;
+    nameArabic: string,
 
-    hours: number;
+    hours: number,
 
-    underRequirement: Program;
+    underRequirement: Program,
 
-    childern: Program[];
+    childern: Program[],
 
-    courses: Course[];
+    courses: Course[],
 
-    createTime: Date;
+    createTime: Date,
 
-    updateTime: Date;
+    updateTime: Date){}
 }

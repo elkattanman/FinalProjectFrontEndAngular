@@ -36,15 +36,14 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { AddTermComponent } from './components/pages/add-term/add-term.component';
+import { RegisterComponent } from './components/FTF/register/register.component';
 
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'registercourse' , component: RegisterCourseComponent},
-  {path: 'result/1' , component: ResultComponent},
-  {path: 'result/2' , component: ResultComponent},
-  {path: 'result/3' , component: ResultComponent},
+  {path: 'result/:id' , component: ResultComponent},
   {path: 'materials' , component: MaterialsComponent},
   {path: 'coursesinfo' , component: CoursesComponent},
   {path: 'courses/info' , component: CourseinfoComponent},
@@ -73,6 +72,7 @@ const routes: Routes = [
   {path: 'proof', component: ProofComponent},
   {path: 'proof/print', component: ProofPrintComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
   {path: 'terms', component: TermsComponent},
   {path: 'terms/new', component: AddTermComponent}

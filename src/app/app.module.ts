@@ -46,6 +46,10 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { AddTermComponent } from './components/pages/add-term/add-term.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { RegisterComponent } from './components/FTF/register/register.component';
 
 @NgModule({
   declarations: [
@@ -89,16 +93,18 @@ import { AddTermComponent } from './components/pages/add-term/add-term.component
     LoginComponent,
     ForgetPasswordComponent,
     TermsComponent,
-    AddTermComponent
+    AddTermComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

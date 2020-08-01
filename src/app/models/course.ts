@@ -1,41 +1,38 @@
 import { CourseInTerm } from './course-in-term';
 import { Department } from './department';
+import { Program } from './program';
 
 export class Course {
 
-    code: string;
+    constructor(
+        code: string,
 
-    nameEnglish: string;
+        nameEnglish: string,
 
-    nameArabic: string;
+        nameArabic: string,
 
-    hours: number;
+        hours: number,
 
-    lecHours: number;
+        lecHours: number,
 
-    LabHours: number;
-
-
-    description: number;
+        labHours: number,
 
 
-    program: number;
+        description: number,
 
+        program: Program,
 
-    preCourse: Course;
+        preCourse: Course,
 
-    childern: Course[];
+        childern: Course[],
 
+        createTime: Date,
 
-    createTime: Date;
+        updateTime: Date,
 
-    updateTime: Date;
+        courseInTermList: CourseInTerm[],
 
-
-    courseInTermList: CourseInTerm[];
-
-
-    departments: Department;
-
+        departments: Department
+    ){}
 
 }

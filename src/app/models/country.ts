@@ -3,34 +3,34 @@ import { State } from './state';
 
 export class Country {
 
-    id: number;
-    name: string;
+    constructor(public id: number,
+        public name: string,
 
-    iso3: string;
+        public iso3: string,
 
-    iso2: string;
+        public iso2: string,
 
-    phoneCode: string;
+        public phoneCode: string,
 
-    capital: string;
+        public capital: string,
 
-    currency: string;
+        public currency: string,
 
-    nativ: string;
+        public nativ: string,
 
-    emoji: string;
+        public emoji: string,
 
-    emojiU: string;
+        public emojiU: string,
 
-    createdAt: Date;
+        public createdAt: Date,
 
-    updatedAt: Date;
+        public updatedAt: Date,
 
-    flag: boolean;
+        public flag: boolean,
 
-    wikiDataId: string;
+        public wikiDataId: string,
 
-    states: State[];
+        public states: State[],
 
-    cities: City[];
+        public cities: City[]){}
 }

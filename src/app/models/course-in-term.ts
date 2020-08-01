@@ -3,6 +3,7 @@ import { CourseType } from './course-type.enum';
 import { Day } from './day.enum';
 import { Term } from './term';
 import { TeachingStaff } from './teaching-staff';
+import { Labs } from './labs';
 
 
 export class CourseInTerm {
@@ -19,7 +20,7 @@ export class CourseInTerm {
 
     courseType: CourseType;
 
-    StudentCnt: number;
+    studentCnt: number;
 
     minStudent: number;
 
@@ -30,5 +31,5 @@ export class CourseInTerm {
     // studentHasCourseInTerms: StudentHasCourseInTerm[];
 
 
-    // labs: Labs[];
+    labs: Labs[];
 }

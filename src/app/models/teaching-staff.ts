@@ -1,4 +1,4 @@
-import {Gender} from './gender.enum';
+import { Gender } from './gender.enum';
 import { City } from './city';
 import { CourseInTerm } from './course-in-term';
 import { Labs } from './labs';
@@ -14,7 +14,7 @@ export class TeachingStaff {
 
     img: string;
 
-     nationality: string;
+    nationality: string;
 
     gender: Gender;
 

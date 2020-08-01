@@ -5,31 +5,33 @@ import { TeachingStaff } from './teaching-staff';
 
 export class City {
 
-    id: number;
-    name: string;
+    constructor(public id: number,
+        public name: string,
 
-    state: State;
+        public state: State,
 
-    stateCode: string;
+        public stateCode: string,
 
-    country: Country;
+        public country: Country,
 
-    countryCode: string;
+        public countryCode: string,
 
-    latitude: number;
+        public latitude: number,
 
-    longitude: number;
+        public longitude: number,
 
-    createdAt: Date;
+        public createdAt: Date,
 
-    updatedOn: Date;
+        public updatedOn: Date,
 
-    flag: boolean;
+        public flag: boolean,
 
-    wikiDataId: string;
+        public wikiDataId: string,
 
-    teachingStaffs: TeachingStaff[];
+        public teachingStaffs: TeachingStaff[],
+
+        public students: Student[]){ }
 
 
-    students: Student[];
+
 }

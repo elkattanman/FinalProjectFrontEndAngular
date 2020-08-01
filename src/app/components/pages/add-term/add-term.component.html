@@ -150,16 +150,305 @@
                     <h4>Courses in Term</h4>
                 </div>
                 <div class="card-body">
-                    <h6>add courses that allow to student in term:</h6>
-                    ngb
+                    <h5>add courses that allow to student in term:</h5>
+
+                    <form>
+                        <div class="form-group form-inline">
+                            <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
+                                (keyup.enter)="doSearch(myInput.value)" />
+
+                            <button (click)="doSearch(myInput.value)" class="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col">#</th> -->
+                                    <th scope="col">code</th>
+                                    <th scope="col">nameEnglish</th>
+                                    <th scope="col">nameArabic</th>
+                                    <th scope="col">hours</th>
+                                    <th scope="col">lecHours</th>
+                                    <th scope="col">labHours</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let course of courses">
+                                    <!-- <th scope="row">{{ course.code }}</th> -->
+                                    <th scope="row">
+                                        <ngb-highlight [result]="course.code" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </th>
+                                    <td>
+                                        <ngb-highlight [result]="course.nameEnglish" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="course.nameArabic" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="course.hours | number" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="course.lecHours | number" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="course.labHours | number" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" (click)="openModel(content, course)">
+                                            add
+                                            <i class="fa fa-plus-circle"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- if products empty then display a message-->
+                        <div *ngIf="courses?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                            No Courses found.
+                        </div>
+
+                        <div class="d-flex justify-content-between p-2">
+                            <ngb-pagination [collectionSize]="(theTotalElements)!" [(page)]="thePageNumber"
+                                [pageSize]="thePageSize" (pageChange)="listCourses()">
+                            </ngb-pagination>
+
+                            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="thePageSize"
+                                (click)="listCourses()">
+                                <option [ngValue]="2">2 items per page</option>
+                                <option [ngValue]="4">4 items per page</option>
+                                <option [ngValue]="6">6 items per page</option>
+                            </select>
+                        </div>
+
+                    </form>
                 </div>
             </div>
+
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Lecture Data</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="doctor-name">Doctor to course:</label>
+                            <!-- <input id="doctor-name" type="text" class="form-control" /> -->
+                            <input id="course-doctor" type="text" class="form-control" [(ngModel)]="doctor"
+                                [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
+                                [editable]='false' />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="min-student">Minimum number of student in Course</label>
+                            <input id="min-student" type="number" class="form-control" min=1/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="course-day">Course Day</label>
+                            <select class="form-control" id="course-day">
+                                <option value="null">-- Select Day --</option>
+                                <option value="SATURDAY">SATURDAY | السبت</option>
+                                <option value="SUNDAY">SUNDAY | الاحد</option>
+                                <option value="MONDAY">MONDAY | الاثنين</option>
+                                <option value="TUESDAY">TUESDAY | الثلاثاء</option>
+                                <option value="WEDNESDAY">WEDNESDAY | الاربعاء</option>
+                                <option value="THURSDAY">THURSDAY | الخميس</option>
+                                <option value="FRIDAY">FRIDAY | الجمعه </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="course-time">Course Time</label>
+                            <select class="form-control" id="course-time">
+                                <option value="null">-- Select Time --</option>
+                                <option value="1">9:00 AM- 11:00 AM</option>
+                                <option value="2">11:00 AM- 1:00 PM</option>
+                                <option value="3">1:00 PM- 3:00 PM</option>
+                                <option value="4">3:00 PM- 5:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="course-type">Course Type</label>
+                            <select class="form-control" id="course-type" #lg (click)="selectlg(lg.value)">
+                                <option value="0">-- Select course Type --</option>
+                                <option value="lab">Lab | معمل</option>
+                                <option value="groub">Group | مجموعه </option>
+                            </select>
+                            <!-- <p>{{lgValue}}</p> -->
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="section-number">Number of Sections:</label>
+                            <input id="section-number" type="number" class="form-control" #sn min=1
+                                value='{{lgValue=="groub"?1:2}}' [disabled]='lgValue == "groub" ' />
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+                    <h4>Sections Data</h4>
+
+                    <!-- //loop here -->
+                    <div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ass-doctor-name">Doctor assistant:</label>
+                                <!-- <input id="ass-doctor-name" type="text" class="form-control" /> -->
+                                <input id="course-ass-doctor" type="text" class="form-control" [(ngModel)]="ass_doctor"
+                                    [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
+                                    [editable]='false' />
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="min-student">Maximum number of student in Section</label>
+                                <input id="min-student" type="number" class="form-control" min=1/>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="course-day">Section Day</label>
+                                <select class="form-control" id="course-day">
+                                    <option value="null">-- Select Day --</option>
+                                    <option value="SATURDAY">SATURDAY | السبت</option>
+                                    <option value="SUNDAY">SUNDAY | الاحد</option>
+                                    <option value="MONDAY">MONDAY | الاثنين</option>
+                                    <option value="TUESDAY">TUESDAY | الثلاثاء</option>
+                                    <option value="WEDNESDAY">WEDNESDAY | الاربعاء</option>
+                                    <option value="THURSDAY">THURSDAY | الخميس</option>
+                                    <option value="FRIDAY">FRIDAY | الجمعه </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="course-time">Section Time</label>
+                                <select class="form-control" id="course-time">
+                                    <option value="null">-- Select Time --</option>
+                                    <option value="1">9:00 AM - 11:00 AM</option>
+                                    <option value="2">11:00 AM - 1:00 PM</option>
+                                    <option value="3">1:00 PM - 3:00 PM</option>
+                                    <option value="4">3:00 PM - 5:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">discord</button>
+                    <button type="button" class="btn btn-light" (click)="saveCourseInTerm(); modal.close('Close click')">Save</button>
+                </div>
+            </ng-template>
+
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4>Second</h4>
+                    <h4>Selected Courses in Term</h4>
                 </div>
                 <div class="card-body">
-                    <h5>Second</h5>
+                    <h5>these course blew that courses can student choose in this term</h5>
+                    
+
+                    <form>
+                        <div class="form-group form-inline">
+                            <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
+                                (keyup.enter)="doSearch(myInput.value)" />
+
+                            <button (click)="doSearch(myInput.value)" class="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Course code</th>
+                                    <th scope="col">nameEnglish</th>
+                                    <th scope="col">nameArabic</th>
+                                    <th scope="col">Course Doctor</th>
+                                    <th scope="col">Course Type</th>
+                                    <th scope="col">minimum Student</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cit of coursesinTerm">
+                                    <th scope="row">{{ cit.code }}</th>
+                                    <th scope="row">
+                                        <ngb-highlight [result]="cit.course.code" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </th>
+                                    <td>
+                                        <ngb-highlight [result]="cit.course.nameEnglish" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.course.nameArabic" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.instructor.nameArabic" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.courseType" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.studentCnt" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.minStudent" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="cit.minStudent" [term]="myInput.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" (click)="openModel(content, course)">
+                                            add
+                                            <i class="fa fa-minus-circle"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- if products empty then display a message-->
+                        
+                        <div *ngIf="coursesinTerm?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                            No Courses Added Yet.
+                        </div>
+
+                        <!-- <div class="d-flex justify-content-between p-2">
+                            <ngb-pagination [collectionSize]="(theTotalElements)!" [(page)]="thePageNumber"
+                                [pageSize]="thePageSize" (pageChange)="listCourses()">
+                            </ngb-pagination>
+
+                            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="thePageSize"
+                                (click)="listCourses()">
+                                <option [ngValue]="2">2 items per page</option>
+                                <option [ngValue]="4">4 items per page</option>
+                                <option [ngValue]="6">6 items per page</option>
+                            </select>
+                        </div> -->
+
+                    </form>
                 </div>
             </div>
         </div>
