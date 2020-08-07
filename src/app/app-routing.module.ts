@@ -37,45 +37,58 @@ import { ForgetPasswordComponent } from './components/pages/forget-password/forg
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { AddTermComponent } from './components/pages/add-term/add-term.component';
 import { RegisterComponent } from './components/FTF/register/register.component';
+import {AuthGuard} from "./services/security/gurad/auth.guard";
+import {Error404Component} from "./components/pages/error404/error404.component";
+import {Error401Component} from "./components/pages/error401/error401.component";
+import {AdminGuard} from "./services/security/gurad/admin.guard";
+import {StudentGuard} from "./services/security/gurad/student.guard";
+import {DoctorGuard} from "./services/security/gurad/doctor.guard";
 
 
 const routes: Routes = [
-  {path: '' , component: HomeComponent},
-  {path: 'profile' , component: ProfileComponent},
-  {path: 'registercourse' , component: RegisterCourseComponent},
-  {path: 'result/:id' , component: ResultComponent},
-  {path: 'materials' , component: MaterialsComponent},
-  {path: 'coursesinfo' , component: CoursesComponent},
-  {path: 'courses/info' , component: CourseinfoComponent},
-  {path: 'excuse' , component: ExcuseComponent},
-  {path: 'doctor/studentstatus' , component: StudentstatusComponent},
-  {path: 'materials/new' , component: UploadmaterialsComponent},
-  {path: 'writepost' , component: WritepostComponent},
-  {path: 'excuses/view' , component: DoctorexcuseComponent},
-  {path: 'students/add' , component: AddstudentComponent},
-  {path: 'students/add/manual' , component: AddStudentManualComponent},
-  {path: 'students/add/sheet' , component: AddStudentExcelComponent},
-  {path: 'course-term' , component: CourseTermComponent},
-  {path: 'students' , component: StudentsComponent},
-  {path: 'guides' , component: StudentsGuideComponent},
-  {path: 'sections' , component: StudentsSectionComponent},
-  {path: 'material/edit' , component: MaterailEditComponent},
-  {path: 'department' , component: DepartmentComponent},
-  {path: 'courses/registered' , component: RegisteredStudentComponent},
-  {path: 'dashboard' , component: DashboardComponent},
-  {path: 'inbox' , component: InboxComponent},
-  {path: 'chat' , component: ChatComponent},
-  {path: 'courses' , component: AddCourseManuallyComponent},
-  {path: 'courses/new', component: CourseFormComponent},
-  {path: 'courses/rate', component: RateComponent},
-  {path: 'payments', component: PaymentsComponent},
-  {path: 'proof', component: ProofComponent},
-  {path: 'proof/print', component: ProofPrintComponent},
+  {path: 'home' , component: HomeComponent},
+  // {path:'/' , redirectTo:'home', pathMatch: 'full'},
+  {path:'index' , redirectTo:'home', pathMatch: 'full'},
+  {path:'' , redirectTo:'home', pathMatch: 'full'},
+  {path: 'profile' , component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'registercourse' , component: RegisterCourseComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'result/:id' , component: ResultComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'materials' , component: MaterialsComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'coursesinfo' , component: CoursesComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'courses/info' , component: CourseinfoComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'excuse' , component: ExcuseComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'doctor/studentstatus' , component: StudentstatusComponent, canActivate: [AuthGuard, DoctorGuard]},
+  {path: 'materials/new' , component: UploadmaterialsComponent, canActivate: [AuthGuard, DoctorGuard]},
+  {path: 'writepost' , component: WritepostComponent, canActivate: [AuthGuard, DoctorGuard]},
+  {path: 'excuses/view' , component: DoctorexcuseComponent, canActivate: [AuthGuard, DoctorGuard]},
+  {path: 'students/add' , component: AddstudentComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'students/add/manual' , component: AddStudentManualComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'students/add/sheet' , component: AddStudentExcelComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'course-term' , component: CourseTermComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'students' , component: StudentsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'guides' , component: StudentsGuideComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'sections' , component: StudentsSectionComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'material/edit' , component: MaterailEditComponent, canActivate: [AuthGuard, DoctorGuard]},
+  {path: 'department' , component: DepartmentComponent, canActivate: [AuthGuard, StudentGuard]},
+  {path: 'courses/registered' , component: RegisteredStudentComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'dashboard' , component: DashboardComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'inbox' , component: InboxComponent, canActivate: [AuthGuard]},
+  {path: 'chat' , component: ChatComponent, canActivate: [AuthGuard]},
+  {path: 'courses' , component: AddCourseManuallyComponent, canActivate: [AuthGuard ,AdminGuard]},
+  {path: 'courses/new', component: CourseFormComponent, canActivate: [AuthGuard, AdminGuard]},
+  // TODO add nav link to rate + star
+  {path: 'courses/rate', component: RateComponent, canActivate: [AuthGuard,StudentGuard]},
+  // TODO add nav link
+  {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'proof', component: ProofComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'proof/print', component: ProofPrintComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
-  {path: 'terms', component: TermsComponent},
-  {path: 'terms/new', component: AddTermComponent}
+  {path: 'terms', component: TermsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'terms/new', component: AddTermComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'error', component: Error401Component},
+  {path: '**', component: Error404Component}
 ];
 
 @NgModule({

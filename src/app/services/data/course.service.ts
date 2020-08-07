@@ -1,39 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Course } from '../../models/course';
 import { map } from 'rxjs/operators';
+import {API_V1} from "../../constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  private baseUrl = 'https://localhost:8443/api/courses';
+  private baseUrl = `${API_V1}/courses`;
 
 
 
   constructor(private httpClient: HttpClient) { }
 
 
-  getCourses(): Observable<Course[]> {
-    return this.httpClient.get<GetResponseCourses>(this.baseUrl).pipe(map(response => response._embedded.courses));
+  findALL(
+    thePage: number,
+    thePageSize: number
+  ): Observable<GetResponse> {
+    // need to build URL based on page and size
+    const params=new HttpParams()
+      .set("page", `${thePage}`)
+      .set("size", `${thePageSize}`);
+    return this.httpClient.get<GetResponse>(this.baseUrl, {params});
   }
 
-  getCourseListPaginate(thePage: number,
-    thePageSize: number): Observable<GetResponseCourses> {
-      
-      
-    // need to build URL based on page and size 
-    const searchUrl = `${this.baseUrl}/?page=${thePage}&size=${thePageSize}`;
-    // console.log(searchUrl);
-    return this.httpClient.get<GetResponseCourses>(searchUrl);
-  }
 
-  
+
+
 }
 
-interface GetResponseCourses {
+interface GetResponse {
   _embedded: {
     courses: Course[];
   },

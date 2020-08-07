@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,8 +48,15 @@ import { TermsComponent } from './components/pages/terms/terms.component';
 import { AddTermComponent } from './components/pages/add-term/add-term.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
+
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { RegisterComponent } from './components/FTF/register/register.component';
+import { Error404Component } from './components/pages/error404/error404.component';
+import { Error401Component } from './components/pages/error401/error401.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from "@angular/material/core";
+import {DemoMaterialModule} from "./material-module";
 
 @NgModule({
   declarations: [
@@ -94,15 +101,21 @@ import { RegisterComponent } from './components/FTF/register/register.component'
     ForgetPasswordComponent,
     TermsComponent,
     AddTermComponent,
-    RegisterComponent
+    RegisterComponent,
+    Error404Component,
+    Error401Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DemoMaterialModule,
+    MatNativeDateModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

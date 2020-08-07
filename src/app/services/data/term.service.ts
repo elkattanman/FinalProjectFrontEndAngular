@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { TeachingStaff } from '../../models/teaching-staff';
-import { Observable } from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Term} from "../../models/term";
 import {API_V1} from "../../constants";
-
 @Injectable({
   providedIn: 'root'
 })
-export class TeachingStaffService {
+export class TermService {
 
-  private baseUrl = `${API_V1}/teachingStaffs`;
+  private baseUrl = `${API_V1}/api/terms`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,11 +23,11 @@ export class TeachingStaffService {
     return this.httpClient.get<GetResponse>(this.baseUrl, {params});
   }
 
-  save(body: TeachingStaff): any{
+  save(body: Term): any{
     return this.httpClient.post(this.baseUrl, body);
   }
 
-  update(id: any, body: TeachingStaff): any{
+  update(id: any, body: Term): any{
     return this.httpClient.put(this.baseUrl+`/${id}`, body);
   }
 
@@ -39,12 +37,11 @@ export class TeachingStaffService {
 
 
 
-
 }
 
-interface GetResponse {
+interface GetResponse{
   _embedded: {
-    teachingStaffs: TeachingStaff[];
+    terms: Term[];
   },
   page: {
     size: number,

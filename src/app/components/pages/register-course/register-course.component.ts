@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ThrowStmt } from '@angular/compiler';
+import {Component, OnInit} from '@angular/core';
 
 declare var jQuery: any;
 
@@ -10,29 +9,30 @@ declare var jQuery: any;
 })
 export class RegisterCourseComponent implements OnInit {
 
-  courses: Course[];
+  courses: __Course[];
   selected;
   cells: Cell[][];
+
   constructor() {
-      this.selected = new Array();
-      this.cells = [];
-      for (let i = 0 ; i < 8 ; ++i){
-        this.cells[i] = [];
-        for (let j = 0; j < 5 ; ++j){
-          this.cells[i][j] = new Cell(false, new Course('', '', false, '', 1, 1));
-        }
+    this.selected = new Array();
+    this.cells = [];
+    for (let i = 0; i < 8; ++i) {
+      this.cells[i] = [];
+      for (let j = 0; j < 5; ++j) {
+        this.cells[i][j] = new Cell(false, new __Course('', '', false, '', 1, 1));
       }
-     }
+    }
+  }
 
   ngOnInit(): void {
     this.courses = [
-      new Course('CS50', 'CPP', true, 'Dr Hamdi', 1, 1),
-      new Course('CS60', 'Java', false, 'Dr Hamdi', 4, 2),
-      new Course('CS70', 'TypeScript', false, 'Dr fawzy', 1, 3),
-      new Course('CS80', 'Android', false, 'Dr smsm', 2, 1),
-      new Course('CS90', 'Web Develop', false, 'Dr Hamdi', 2, 2) ];
-    (function($) {
-      $(document).ready(function(){
+      new __Course('CS50', 'CPP', true, 'Dr Hamdi', 1, 1),
+      new __Course('CS60', 'Java', false, 'Dr Hamdi', 4, 2),
+      new __Course('CS70', 'TypeScript', false, 'Dr fawzy', 1, 3),
+      new __Course('CS80', 'Android', false, 'Dr smsm', 2, 1),
+      new __Course('CS90', 'Web Develop', false, 'Dr Hamdi', 2, 2)];
+    (function ($) {
+      $(document).ready(function () {
         $('.duallistbox').bootstrapDualListbox();
         $('.removeall').css('visibility', 'hidden');
         console.log('Hello World');
@@ -40,38 +40,42 @@ export class RegisterCourseComponent implements OnInit {
     })(jQuery);
   }
 
-  onSelect(value: Course): void{
+  onSelect(value: __Course): void {
     this.selected.push(value);
     this.courses = this.courses.filter((element) => {
-          return !(value.code === element.code);
+      return !(value.code === element.code);
     });
     this.cells[value.day][value.time].flag = true;
     this.cells[value.day][value.time].course = value;
   }
 
-  onDselect(value: Course): void{
+  onDselect(value: __Course): void {
     this.courses.push(value);
     this.selected = this.selected.filter((element) => {
       return !(value.code === element.code);
     });
     this.cells[value.day][value.time].flag = false;
-    this.cells[value.day][value.time].course = new Course('', '', false, '', 1, 1);
+    this.cells[value.day][value.time].course = new __Course('', '', false, '', 1, 1);
   }
 
 }
 
-class Cell{
+class Cell {
   constructor(
     public flag: boolean,
-    public course: Course
-  ){}
+    public course: __Course
+  ) {
+  }
 }
-class Course{
-  constructor(public code: string,
-              public name: string,
-              public isForced: boolean,
-              public doctor: string,
-              public day: number,
-              public time: number
-  ){}
+
+class __Course {
+  constructor(
+    public code: string,
+    public name: string,
+    public isForced: boolean,
+    public doctor: string,
+    public day: number,
+    public time: number) {
+  }
+
 }

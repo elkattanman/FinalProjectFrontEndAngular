@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../../../services/security/token-storage.service";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  isTeacher: string;
-  constructor() { }
+  role: string;
+  constructor(private user : TokenStorageService) { }
 
   ngOnInit(): void {
-    this.isTeacher = 'Mustafa';
+    let roles=this.user.getUser().roles;
+    for(let r of roles){
+      if(r.indexOf("ROLE")!=-1){
+        this.role=r;
+      }
+    }
+    console.log(this.role);
   }
 
 }

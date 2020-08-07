@@ -1,40 +1,40 @@
-import { CourseInTerm } from './course-in-term';
-import { Student } from './student';
-import { TermType } from './term-type.enum';
-import { Transaction } from './transaction';
+import {CourseInTerm} from './course-in-term';
+import {Student} from './student';
+import {TermType} from './term-type.enum';
+import {Transaction} from './transaction';
 
 export class Term {
-    id: number;
+  public id: number;
 
-     nameEnglish: string;
+  public nameEnglish: string;
 
-    nameArabic: string;
+  public nameArabic: string;
 
-    termType: TermType;
+  public termType: TermType;
 
-     start: Date;
+  public start: Date;
 
-    end: Date;
+  public end: Date;
 
-     startRegistration: Date;
+  public startRegistration: Date;
 
-    endRegistration: Date;
+  public endRegistration: Date;
 
-    startUpdating: Date;
+  public startUpdating: Date;
 
-    endUpdating: Date;
+  public endUpdating: Date;
 
-    startWithdrawn: Date;
+  public startWithdrawn: Date;
 
-    endWithdrawn: Date;
+  public endWithdrawn: Date;
 
-    createTime: Date;
+  public createTime: Date;
 
-    updateTime: Date;
+  public updateTime: Date;
 
-    courseInTermList: CourseInTerm[];
+  public courseInTermList: CourseInTerm[];
 
-    transactions: Transaction[];
+  public transactions: Transaction[];
 
-    students: Student[];
+  public students: Student[];
 }

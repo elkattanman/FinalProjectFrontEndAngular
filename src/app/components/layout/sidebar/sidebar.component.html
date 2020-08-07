@@ -3,7 +3,7 @@
   <!-- Brand Logo -->
   <a routerLing="" class="brand-link">
     <img src="assets/logo.jpg" alt="AdminLTE Logo" width="60" height="60" class="img-circle elevation-3"
-      style="opacity: .8">
+         style="opacity: .8">
     <span style="margin-left: 10px;" class="brand-text font-weight-dark">MUFIC</span>
   </a>
 
@@ -38,201 +38,208 @@
           <a routerLink="inbox" class="nav-link" routerLinkActive="active">
             <i class="nav-icon far fa-envelope"></i>
             <p>
-              MailBox
+              MailBox {{role}}
             </p>
           </a>
         </li>
 
+        <div class="nav-sidebar" *ngIf=" role == 'ROLE_STUDENT' ">
+          <li class="nav-header">Student</li>
 
-        <li class="nav-header">Student</li>
-        <li class="nav-item">
-          <a routerLink="registercourse" routerLinkActive="active" class="nav-link">
-            <i class="nav-icon fa fa-edit"></i>
-            <p>
-              Register Courses
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="registercourse" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fa fa-edit"></i>
+              <p>
+                Register Courses
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="materials" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-download"></i>
-            <p>
-              Materails
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="materials" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-download"></i>
+              <p>
+                Materails
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="result/1" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fas fa-user-alt"></i>
-            <p>
-              Terms Results
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="result/1" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                Terms Results
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="/excuse" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-backspace"></i>
-            <p>
-              Excuse
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/excuse" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-backspace"></i>
+              <p>
+                Excuse
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="/department" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-list-ol"></i>
-            <p>
-              Department
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/department" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-list-ol"></i>
+              <p>
+                Department
+              </p>
+            </a>
+          </li>
+        </div>
 
-        <li class="nav-header">Lecturer</li>
+        <div class="nav-sidebar" *ngIf=" role == 'ROLE_DOCTOR' ">
+          <li class="nav-header">Lecturer</li>
 
-        <li class="nav-item">
-          <a routerLink="/doctor/studentstatus" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-edit"></i>
-            <p>
-              Student marks
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/doctor/studentstatus" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-edit"></i>
+              <p>
+                Student marks
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="/material/edit" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-cogs"></i>
-            <p>
-              Edit Materails
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/material/edit" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-cogs"></i>
+              <p>
+                Edit Materails
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="/materials/new" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-upload"></i>
-            <p>
-              upload Materails
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/materials/new" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-upload"></i>
+              <p>
+                upload Materails
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a routerLink="/writepost" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-pen"></i>
-            <p>
-              Write Post
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
-
-
-        <li class="nav-item">
-          <a routerLink="/excuses/view" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-glasses"></i>
-            <p>
-              View Excuses
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-header">Administrator</li>
-
-        <li class="nav-item">
-          <a routerLink="/dashboard" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              DashBoard
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/writepost" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-pen"></i>
-            <p>
-              Write Post
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/students/" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-users"></i>
-            <p>
-              STudents
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/students/add" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-plus"></i>
-            <p>
-              Add STudents
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/sections" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-school"></i>
-            <p>
-              Sections
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/guides" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-hands-helping"></i>
-            <p>
-              Guides
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="courses" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-book"></i>
-            <p>
-              Courses
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="courses/registered" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fa fa-chart-pie"></i>
-            <p>
-              Courses Registered
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a routerLink="/writepost" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-pen"></i>
+              <p>
+                Write Post
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
 
 
-        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+          <li class="nav-item">
+            <a routerLink="/excuses/view" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-glasses"></i>
+              <p>
+                View Excuses
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+        </div>
 
-        <li class="nav-item">
-          <a href="/" class="nav-link" routerLinkActive="active">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
+
+        <div class="nav-sidebar" *ngIf=" role == 'ROLE_ADMIN' ">
+          <li class="nav-header">Administrator</li>
+
+          <li class="nav-item">
+            <a routerLink="/dashboard" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                DashBoard
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/writepost" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-pen"></i>
+              <p>
+                Write Post
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/students/" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                STudents
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/students/add" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-plus"></i>
+              <p>
+                Add STudents
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/terms" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-school"></i>
+              <p>
+                Term
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/guides" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-hands-helping"></i>
+              <p>
+                Guides
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="courses" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Courses
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="courses/registered" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fa fa-chart-pie"></i>
+              <p>
+                Courses Registered
+              </p>
+            </a>
+          </li>
+        </div>
+
+
+<!--        <li class="nav-header">MULTI LEVEL EXAMPLE</li>-->
+
+<!--        <li class="nav-item">-->
+<!--          <a href="/" class="nav-link" routerLinkActive="active">-->
+<!--            <i class="nav-icon fas fa-th"></i>-->
+<!--            <p>-->
+<!--              Widgets-->
+<!--              <span class="right badge badge-danger">New</span>-->
+<!--            </p>-->
+<!--          </a>-->
+<!--        </li>-->
 
       </ul>
     </nav>

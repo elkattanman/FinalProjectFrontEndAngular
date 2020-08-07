@@ -1,45 +1,46 @@
-import { Gender } from './gender.enum';
-import { City } from './city';
-import { CourseInTerm } from './course-in-term';
-import { Labs } from './labs';
-import { Student } from './student';
-import { User } from './user';
+import {Gender} from './gender.enum';
+import {City} from './city';
+import {CourseInTerm} from './course-in-term';
+import {Labs} from './labs';
+import {Student} from './student';
+import {User} from './user';
+
 export class TeachingStaff {
 
-    id: number;
+  public id: number;
 
-    nameEnglish: string;
+  public nameEnglish: string;
 
-    nameArabic: string;
+  public nameArabic: string;
 
-    img: string;
+  public img: string;
 
-    nationality: string;
+  public nationality: string;
 
-    gender: Gender;
+  public gender: Gender;
 
-    religion: string;
+  public religion: string;
 
-    DOB: Date;
+  public DOB: Date;
 
-    nationalId: string;
+  public nationalId: string;
 
-    email: string;
+  public email: string;
 
-    phdDegree: string;
+  public phdDegree: string;
 
-    user: User;
+  public user: User;
 
 
-    city: City;
+  public city: City;
 
-    createTime: Date;
+  public createTime: Date;
 
-    updateTime: Date;
+  public updateTime: Date;
 
-    courseInTermList: CourseInTerm[];
+  public courseInTermList: CourseInTerm[];
 
-    labs: Labs[];
+  public labs: Labs[];
 
-    students: Student[];
+  public students: Student[];
 }

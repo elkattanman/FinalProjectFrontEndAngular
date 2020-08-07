@@ -1,457 +1,477 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Courses info.</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item "><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Courses</li>
-                        <li class="breadcrumb-item active">information</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Courses info.</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item "><a href="#">Home</a></li>
+            <li class="breadcrumb-item">Courses</li>
+            <li class="breadcrumb-item active">information</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h4>Term Data</h4>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Name English</label>
-                                <input type="text" class="form-control" id="nameEnglish" placeholder="Name English">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">الاسم باللغه العربيه</label>
-                                <input type="text" class="form-control" id="nameArabic"
-                                    placeholder="الاسم باللغه العربيه">
-                            </div>
-                        </div>
-                        <hr>
-                        <fieldset class="form-group">
-                            <div class="form-row">
-                                <label class="col-form-label col-md-2">Term Type </label>
-                                <div class="col-md-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                                            value="option1" checked>
-                                        <label class="form-check-label" for="gridRadios1">
-                                            Regular Term | ترم نظامى
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                                            value="option2">
-                                        <label class="form-check-label" for="gridRadios2">
-                                            Summer Term | ترم صيفى
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <hr>
-                        <fieldset class="form-group">
-                            <legend>Start & End date for term</legend>
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <form name="form" (ngSubmit)="form1.form.valid && onSubmit()" #form1="ngForm">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4>Term Data</h4>
+          </div>
+          <div class="card-body">
+              <div class="form-row">
+                <mat-form-field class="form-group col-md-6" appearance="fill">
+                  <mat-label>Name English</mat-label>
+                  <input placeholder="Name English" matInput [(ngModel)]="term.nameEnglish" name="nameEnglish"
+                     required minlength="6" #nameEnglish="ngModel">
+                </mat-form-field>
 
-                            <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="6"
-                                [dayTemplate]="t" outsideDays="hidden">
-                            </ngb-datepicker>
-
-                            <ng-template #t let-date let-focused="focused">
-                                <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                                    (mouseleave)="hoveredDate = null">
-                                    {{ date.day }}
-                                </span>
-                            </ng-template>
-                        </fieldset>
-
-                        <hr>
-                        <div class="form-row">
-                            <div class="form-group col-md-4" style="border-left: blue;">
-                                <fieldset class="form-group">
-                                    <legend>Start & End Register date</legend>
-                                    <ngb-datepicker #dp1 (dateSelect)="onDateSelection1($event)" [displayMonths]="2"
-                                        [dayTemplate]="t1" outsideDays="hidden">
-                                    </ngb-datepicker>
-
-                                    <ng-template #t1 let-date let-focused="focused">
-                                        <span class="custom-day" [class.focused]="focused"
-                                            [class.range]="isRange1(date)"
-                                            [class.faded]="isHovered1(date) || isInside1(date)"
-                                            (mouseenter)="hoveredDateRegister = date"
-                                            (mouseleave)="hoveredDateRegister = null">
-                                            {{ date.day }}
-                                        </span>
-                                    </ng-template>
-
-                                </fieldset>
-                            </div>
-
-                            <div class="form-group col-md-4" style="border-left: blue;">
-                                <fieldset class="form-group">
-                                    <legend>Start & End Update/Delete date</legend>
-                                    <ngb-datepicker #dp2 (dateSelect)="onDateSelection2($event)" [displayMonths]="2"
-                                        [dayTemplate]="t2" outsideDays="hidden">
-                                    </ngb-datepicker>
-
-                                    <ng-template #t2 let-date let-focused="focused">
-                                        <span class="custom-day" [class.focused]="focused"
-                                            [class.range]="isRange2(date)"
-                                            [class.faded]="isHovered2(date) || isInside2(date)"
-                                            (mouseenter)="hoveredDateUpdate = date"
-                                            (mouseleave)="hoveredDateUpdate = null">
-                                            {{ date.day }}
-                                        </span>
-                                    </ng-template>
-                                </fieldset>
-                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                            </div>
-
-                            <div class="form-group col-md-4" style="border-left: blue;">
-                                <fieldset class="form-group">
-                                    <legend>Start & End Withdrawn date</legend>
-                                    <ngb-datepicker #dp3 (dateSelect)="onDateSelection3($event)" [displayMonths]="2"
-                                        [dayTemplate]="t3" outsideDays="hidden">
-                                    </ngb-datepicker>
-
-                                    <ng-template #t3 let-date let-focused="focused">
-                                        <span class="custom-day" [class.focused]="focused"
-                                            [class.range]="isRange3(date)"
-                                            [class.faded]="isHovered3(date) || isInside3(date)"
-                                            (mouseenter)="hoveredDateDelete = date"
-                                            (mouseleave)="hoveredDateDelete = null">
-                                            {{ date.day }}
-                                        </span>
-                                    </ng-template>
-                                </fieldset>
-                            </div>
-
-
-                        </div>
-                        <hr>
-                    </form>
-                </div>
-            </div>
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h4>Courses in Term</h4>
-                </div>
-                <div class="card-body">
-                    <h5>add courses that allow to student in term:</h5>
-
-                    <form>
-                        <div class="form-group form-inline">
-                            <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
-                                (keyup.enter)="doSearch(myInput.value)" />
-
-                            <button (click)="doSearch(myInput.value)" class="btn btn-primary">
-                                Search
-                            </button>
-                        </div>
-
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <!-- <th scope="col">#</th> -->
-                                    <th scope="col">code</th>
-                                    <th scope="col">nameEnglish</th>
-                                    <th scope="col">nameArabic</th>
-                                    <th scope="col">hours</th>
-                                    <th scope="col">lecHours</th>
-                                    <th scope="col">labHours</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let course of courses">
-                                    <!-- <th scope="row">{{ course.code }}</th> -->
-                                    <th scope="row">
-                                        <ngb-highlight [result]="course.code" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </th>
-                                    <td>
-                                        <ngb-highlight [result]="course.nameEnglish" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="course.nameArabic" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="course.hours | number" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="course.lecHours | number" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="course.labHours | number" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" (click)="openModel(content, course)">
-                                            add
-                                            <i class="fa fa-plus-circle"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- if products empty then display a message-->
-                        <div *ngIf="courses?.length == 0" class="alert alert-warning col-md-12" role="alert">
-                            No Courses found.
-                        </div>
-
-                        <div class="d-flex justify-content-between p-2">
-                            <ngb-pagination [collectionSize]="(theTotalElements)!" [(page)]="thePageNumber"
-                                [pageSize]="thePageSize" (pageChange)="listCourses()">
-                            </ngb-pagination>
-
-                            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="thePageSize"
-                                (click)="listCourses()">
-                                <option [ngValue]="2">2 items per page</option>
-                                <option [ngValue]="4">4 items per page</option>
-                                <option [ngValue]="6">6 items per page</option>
-                            </select>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-            <ng-template #content let-modal>
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal title</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4>Lecture Data</h4>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="doctor-name">Doctor to course:</label>
-                            <!-- <input id="doctor-name" type="text" class="form-control" /> -->
-                            <input id="course-doctor" type="text" class="form-control" [(ngModel)]="doctor"
-                                [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
-                                [editable]='false' />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="min-student">Minimum number of student in Course</label>
-                            <input id="min-student" type="number" class="form-control" min=1/>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="course-day">Course Day</label>
-                            <select class="form-control" id="course-day">
-                                <option value="null">-- Select Day --</option>
-                                <option value="SATURDAY">SATURDAY | السبت</option>
-                                <option value="SUNDAY">SUNDAY | الاحد</option>
-                                <option value="MONDAY">MONDAY | الاثنين</option>
-                                <option value="TUESDAY">TUESDAY | الثلاثاء</option>
-                                <option value="WEDNESDAY">WEDNESDAY | الاربعاء</option>
-                                <option value="THURSDAY">THURSDAY | الخميس</option>
-                                <option value="FRIDAY">FRIDAY | الجمعه </option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="course-time">Course Time</label>
-                            <select class="form-control" id="course-time">
-                                <option value="null">-- Select Time --</option>
-                                <option value="1">9:00 AM- 11:00 AM</option>
-                                <option value="2">11:00 AM- 1:00 PM</option>
-                                <option value="3">1:00 PM- 3:00 PM</option>
-                                <option value="4">3:00 PM- 5:00 PM</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="course-type">Course Type</label>
-                            <select class="form-control" id="course-type" #lg (click)="selectlg(lg.value)">
-                                <option value="0">-- Select course Type --</option>
-                                <option value="lab">Lab | معمل</option>
-                                <option value="groub">Group | مجموعه </option>
-                            </select>
-                            <!-- <p>{{lgValue}}</p> -->
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="section-number">Number of Sections:</label>
-                            <input id="section-number" type="number" class="form-control" #sn min=1
-                                value='{{lgValue=="groub"?1:2}}' [disabled]='lgValue == "groub" ' />
-
-                        </div>
-
-                    </div>
-
-                    <hr>
-                    <h4>Sections Data</h4>
-
-                    <!-- //loop here -->
-                    <div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="ass-doctor-name">Doctor assistant:</label>
-                                <!-- <input id="ass-doctor-name" type="text" class="form-control" /> -->
-                                <input id="course-ass-doctor" type="text" class="form-control" [(ngModel)]="ass_doctor"
-                                    [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
-                                    [editable]='false' />
-
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="min-student">Maximum number of student in Section</label>
-                                <input id="min-student" type="number" class="form-control" min=1/>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="course-day">Section Day</label>
-                                <select class="form-control" id="course-day">
-                                    <option value="null">-- Select Day --</option>
-                                    <option value="SATURDAY">SATURDAY | السبت</option>
-                                    <option value="SUNDAY">SUNDAY | الاحد</option>
-                                    <option value="MONDAY">MONDAY | الاثنين</option>
-                                    <option value="TUESDAY">TUESDAY | الثلاثاء</option>
-                                    <option value="WEDNESDAY">WEDNESDAY | الاربعاء</option>
-                                    <option value="THURSDAY">THURSDAY | الخميس</option>
-                                    <option value="FRIDAY">FRIDAY | الجمعه </option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="course-time">Section Time</label>
-                                <select class="form-control" id="course-time">
-                                    <option value="null">-- Select Time --</option>
-                                    <option value="1">9:00 AM - 11:00 AM</option>
-                                    <option value="2">11:00 AM - 1:00 PM</option>
-                                    <option value="3">1:00 PM - 3:00 PM</option>
-                                    <option value="4">3:00 PM - 5:00 PM</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <mat-form-field class="form-group col-md-6" appearance="fill">
+                  <mat-label>الاسم باللغه العربيه</mat-label>
+                  <input placeholder="الاسم باللغه العربيه" matInput [(ngModel)]="term.nameArabic" name="nameArabic"
+                      required minlength="6" #nameArabic="ngModel">
+                </mat-form-field>
+              </div>
+              <hr>
+              <fieldset class="form-group">
+                <div class="form-row">
+                  <label class="col-form-label col-md-2">Term Type </label>
+                  <mat-radio-group
+                    aria-labelledby="TermType"
+                    class="example-radio-group"
+                    [(ngModel)]="term.termType" name="term-type"
+                    required="required" #ttype="ngModel">
+                    <mat-radio-button class="example-radio-button" value="regular">
+                      Regular Term | ترم نظامى
+                    </mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="summer">
+                      Summer Term | ترم صيفى
+                    </mat-radio-button>
+                  </mat-radio-group>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">discord</button>
-                    <button type="button" class="btn btn-light" (click)="saveCourseInTerm(); modal.close('Close click')">Save</button>
+              </fieldset>
+              <hr>
+              <mat-form-field appearance="fill">
+                <mat-label>Start & End date for term</mat-label>
+                <mat-date-range-input [rangePicker]="termsted">
+                  <input matStartDate placeholder="Start date" [(ngModel)]="term.start" name="TermStart" required="required">
+                  <input matEndDate placeholder="End date" [(ngModel)]="term.end" name="TermEnd" required="required">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="termsted"></mat-datepicker-toggle>
+                <mat-date-range-picker #termsted></mat-date-range-picker>
+              </mat-form-field>
+
+              <hr>
+              <div class="form-row">
+                <div class="form-group col-md-4" style="border-left: blue;">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Start & End Register date</mat-label>
+                    <mat-date-range-input [rangePicker]="termregsted">
+                      <input matStartDate placeholder="Start date" [(ngModel)]="term.startRegistration"
+                             name="TermRegStart" required="required">
+                      <input matEndDate placeholder="End date" [(ngModel)]="term.endRegistration"
+                             name="TermRegEnd" required="required">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="termregsted"></mat-datepicker-toggle>
+                    <mat-date-range-picker #termregsted></mat-date-range-picker>
+                  </mat-form-field>
                 </div>
-            </ng-template>
 
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h4>Selected Courses in Term</h4>
+                <div class="form-group col-md-4" style="border-left: blue;">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Start & End Update date</mat-label>
+                    <mat-date-range-input [rangePicker]="termupsted">
+                      <input matStartDate placeholder="Start date" [(ngModel)]="term.startUpdating"
+                             name="TermUpStart" required="required">
+                      <input matEndDate placeholder="End date" [(ngModel)]="term.endUpdating"
+                             name="TermUpEnd" required="required">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="termupsted"></mat-datepicker-toggle>
+                    <mat-date-range-picker #termupsted></mat-date-range-picker>
+                  </mat-form-field>
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 </div>
-                <div class="card-body">
-                    <h5>these course blew that courses can student choose in this term</h5>
-                    
 
-                    <form>
-                        <div class="form-group form-inline">
-                            <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
-                                (keyup.enter)="doSearch(myInput.value)" />
-
-                            <button (click)="doSearch(myInput.value)" class="btn btn-primary">
-                                Search
-                            </button>
-                        </div>
-
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Course code</th>
-                                    <th scope="col">nameEnglish</th>
-                                    <th scope="col">nameArabic</th>
-                                    <th scope="col">Course Doctor</th>
-                                    <th scope="col">Course Type</th>
-                                    <th scope="col">minimum Student</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let cit of coursesinTerm">
-                                    <th scope="row">{{ cit.code }}</th>
-                                    <th scope="row">
-                                        <ngb-highlight [result]="cit.course.code" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </th>
-                                    <td>
-                                        <ngb-highlight [result]="cit.course.nameEnglish" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.course.nameArabic" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.instructor.nameArabic" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.courseType" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.studentCnt" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.minStudent" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <ngb-highlight [result]="cit.minStudent" [term]="myInput.value">
-                                        </ngb-highlight>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" (click)="openModel(content, course)">
-                                            add
-                                            <i class="fa fa-minus-circle"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- if products empty then display a message-->
-                        
-                        <div *ngIf="coursesinTerm?.length == 0" class="alert alert-warning col-md-12" role="alert">
-                            No Courses Added Yet.
-                        </div>
-
-                        <!-- <div class="d-flex justify-content-between p-2">
-                            <ngb-pagination [collectionSize]="(theTotalElements)!" [(page)]="thePageNumber"
-                                [pageSize]="thePageSize" (pageChange)="listCourses()">
-                            </ngb-pagination>
-
-                            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="thePageSize"
-                                (click)="listCourses()">
-                                <option [ngValue]="2">2 items per page</option>
-                                <option [ngValue]="4">4 items per page</option>
-                                <option [ngValue]="6">6 items per page</option>
-                            </select>
-                        </div> -->
-
-                    </form>
+                <div class="form-group col-md-4" style="border-left: blue;">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Start & End Withdrawn date</mat-label>
+                    <mat-date-range-input [rangePicker]="termwdsted">
+                      <input matStartDate placeholder="Start date" [(ngModel)]="term.startWithdrawn"
+                             name="TermWDStart" required="required">
+                      <input matEndDate placeholder="End date" [(ngModel)]="term.endWithdrawn"
+                             name="TermWDEnd" required="required">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="termwdsted"></mat-datepicker-toggle>
+                    <mat-date-range-picker #termwdsted></mat-date-range-picker>
+                  </mat-form-field>
                 </div>
-            </div>
+
+              </div>
+              <hr>
+          </div>
         </div>
-        <!-- /.container-fluid -->
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4>Courses in Term</h4>
+          </div>
+          <div class="card-body">
+            <h5>add courses that allow to student in term:</h5>
+
+            <form>
+              <div class="form-group form-inline">
+                <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
+                       (keyup.enter)="doSearch(myInput.value)"/>
+
+                <button (click)="doSearch(myInput.value)" class="btn btn-primary">
+                  Search
+                </button>
+              </div>
+
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">code</th>
+                  <th scope="col">nameEnglish</th>
+                  <th scope="col">nameArabic</th>
+                  <th scope="col">hours</th>
+                  <th scope="col">lecHours</th>
+                  <th scope="col">labHours</th>
+                  <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let course of courses">
+                  <!-- <th scope="row">{{ course.code }}</th> -->
+                  <th scope="row">
+                    <ngb-highlight [result]="course.code" [term]="myInput.value">
+                    </ngb-highlight>
+                  </th>
+                  <td>
+                    <ngb-highlight [result]="course.nameEnglish" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="course.nameArabic" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="course.hours | number" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="course.lecHours | number" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="course.labHours | number" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="openModel(content, course)">
+                      add
+                      <i class="fa fa-plus-circle"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- if products empty then display a message-->
+              <div *ngIf="courses?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                No Courses found.
+              </div>
+
+              <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="(theTotalElements)!" [(page)]="thePageNumber"
+                                [pageSize]="thePageSize" (pageChange)="listCourses()">
+                </ngb-pagination>
+
+                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="thePageSize"
+                        (click)="listCourses()">
+                  <option [ngValue]="2">2 items per page</option>
+                  <option [ngValue]="4">4 items per page</option>
+                  <option [ngValue]="6">6 items per page</option>
+                </select>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <ng-template #content let-modal>
+          <form name="form" (ngSubmit)="form2.form.valid && saveCourseInTerm() ; modal.close('Close click')" #form2="ngForm">
+            <div class="modal-header">
+              <h4 class="modal-title">Course detail</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4>Lecture Data</h4>
+              <div class="form-row">
+                <mat-form-field class="form-group col-md-6" appearance="fill">
+                  <mat-label>Doctor to course:</mat-label>
+                  <input placeholder="Doctor to course:" matInput [(ngModel)]="courseinTerm.instructor" name="course-doctor"
+                         required minlength="6" #courseDoctor="ngModel"
+                         [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter" [editable]='false'>
+                </mat-form-field>
+                <mat-form-field class="form-group col-md-6" appearance="fill">
+                  <mat-label>Minimum number of student in Course</mat-label>
+                  <input placeholder="50" matInput [(ngModel)]="courseinTerm.minStudent"
+                     name="min-student" required #minstudent="ngModel" min=1 type="number">
+                </mat-form-field>
+
+              </div>
+
+              <div class="form-row">
+                <mat-form-field appearance="fill" class="form-group col-md-6">
+                  <mat-label>-- Select Day --</mat-label>
+                  <mat-select [(ngModel)]="courseinTerm.lectureDay" name="section-day" required style="z-index: 10">
+                    <mat-option>-- None --</mat-option>
+                    <mat-option value="SATURDAY">SATURDAY | السبت</mat-option>
+                    <mat-option value="SUNDAY">SUNDAY | الاحد</mat-option>
+                    <mat-option value="MONDAY">MONDAY | الاثنين</mat-option>
+                    <mat-option value="TUESDAY">TUESDAY | الثلاثاء</mat-option>
+                    <mat-option value="WEDNESDAY">WEDNESDAY | الاربعاء</mat-option>
+                    <mat-option value="THURSDAY">THURSDAY | الخميس</mat-option>
+                    <mat-option value="FRIDAY">FRIDAY | الجمعه</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="form-group col-md-6">
+                  <mat-label>Course Time</mat-label>
+                  <mat-select [(ngModel)]="courseinTerm.lectureTime" name="section-time">
+                    <mat-option>-- None --</mat-option>
+                    <mat-option value="1">9:00 AM- 11:00 AM</mat-option>-->
+                    <mat-option value="2">11:00 AM- 1:00 PM</mat-option>
+                    <mat-option value="3">1:00 PM- 3:00 PM</mat-option>
+                    <mat-option value="4">3:00 PM- 5:00 PM</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field appearance="fill" class="form-group col-md-6">
+                  <mat-label>Course Type</mat-label>
+                  <mat-select [(ngModel)]="courseinTerm.courseType" name="course-type">
+                    <mat-option>-- None --</mat-option>
+                    <mat-option value="lab">Lab | معمل</mat-option>
+                    <mat-option value="groub">Group | مجموعه</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+              <hr>
+              <form name="form" (ngSubmit)="form3.form.valid && addSection()" #form3="ngForm">
+                <h4>Sections Data</h4>
+
+                <!-- //loop here -->
+                <div class="form-row">
+
+                  <mat-form-field class="form-group col-md-6" appearance="fill">
+                    <mat-label>Doctor assistant:</mat-label>
+                    <input placeholder="Doctor assistant:" matInput [(ngModel)]="lab.teachingStaff" name="course-ass-doctor"
+                           required minlength="6" #teachingStaff="ngModel"
+                           [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter" [editable]='false'>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-group col-md-6" appearance="fill">
+                    <mat-label>Maximum number of student in Section</mat-label>
+                    <input placeholder="50" matInput [(ngModel)]="lab.maxStudent"
+                           name="max-student" required #minstudent="ngModel" min=1 type="number">
+                  </mat-form-field>
+
+
+                </div>
+
+                <div class="form-row">
+                  <mat-form-field appearance="fill" class="form-group col-md-6">
+                    <mat-label>-- Select Day --</mat-label>
+                    <mat-select [(ngModel)]="lab.labDay" name="section-day" required style="z-index: 10">
+                      <mat-option>-- None --</mat-option>
+                      <mat-option value="SATURDAY">SATURDAY | السبت</mat-option>
+                      <mat-option value="SUNDAY">SUNDAY | الاحد</mat-option>
+                      <mat-option value="MONDAY">MONDAY | الاثنين</mat-option>
+                      <mat-option value="TUESDAY">TUESDAY | الثلاثاء</mat-option>
+                      <mat-option value="WEDNESDAY">WEDNESDAY | الاربعاء</mat-option>
+                      <mat-option value="THURSDAY">THURSDAY | الخميس</mat-option>
+                      <mat-option value="FRIDAY">FRIDAY | الجمعه</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="form-group col-md-6">
+                    <mat-label>Section Time</mat-label>
+                    <mat-select [(ngModel)]="lab.labTime" name="section-time">
+                      <mat-option>-- None --</mat-option>
+                      <mat-option value="1">9:00 AM- 11:00 AM</mat-option>-->
+                      <mat-option value="2">11:00 AM- 1:00 PM</mat-option>
+                      <mat-option value="3">1:00 PM- 3:00 PM</mat-option>
+                      <mat-option value="4">3:00 PM- 5:00 PM</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+                <!--              <button type="button" class="btn btn-success" (click)="addSection()">-->
+                <!--                add section-->
+                <!--                <i class="fa fa-plus-circle"></i>-->
+                <!--              </button>-->
+                <button type="submit" class="btn btn-success">
+                  add section
+                  <i class="fa fa-plus-circle"></i>
+                </button>
+                <br>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Course Assistant</th>
+                    <th scope="col">max Student</th>
+                    <th scope="col">Lab Day</th>
+                    <th scope="col">lab Time</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let lab of courseinTerm?.labs; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <th scope="row">
+                      <ngb-highlight [result]="lab.teachingStaff.nameArabic">
+                      </ngb-highlight>
+                    </th>
+                    <td>
+                      <ngb-highlight [result]="lab.maxStudent">
+                      </ngb-highlight>
+                    </td>
+                    <td>
+                      <ngb-highlight [result]="lab.labDay">
+                      </ngb-highlight>
+                    </td>
+                    <td>
+                      <ngb-highlight [result]="lab.labTime">
+                      </ngb-highlight>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-danger">
+                        remove
+                        <i class="fa fa-minus-circle"></i>
+                      </button>
+                      <button type="button" class="btn btn-warning">
+                        update
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">discord</button>
+              <!--            <button type="button" class="btn btn-light" (click)="saveCourseInTerm(); modal.close('Close click')">Save-->
+              <button type="submit" class="btn btn-light">Save</button>
+            </div>
+          </form>
+        </ng-template>
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4>Selected Courses in Term</h4>
+          </div>
+          <div class="card-body">
+            <h5>these course blew that courses can student choose in this term</h5>
+
+
+            <form>
+              <div class="form-group form-inline">
+                <input #myInput type="text" placeholder="Search for Course ..." class="form-control ml-2"
+                       (keyup.enter)="doSearch(myInput.value)"/>
+
+                <button (click)="doSearch(myInput.value)" class="btn btn-primary">
+                  Search
+                </button>
+              </div>
+
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Course code</th>
+                  <th scope="col">nameEnglish</th>
+                  <th scope="col">nameArabic</th>
+                  <th scope="col">Course Doctor</th>
+                  <th scope="col">Course Type</th>
+                  <th scope="col">minimum Student</th>
+                  <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let cit of term?.courseInTermList; index as i">
+                  <th scope="row">{{ i }}</th>
+                  <th scope="row">
+                    <ngb-highlight [result]="cit.course.code" [term]="myInput.value">
+                    </ngb-highlight>
+                  </th>
+                  <td>
+                    <ngb-highlight [result]="cit.course.nameEnglish" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="cit.course.nameArabic" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="cit.instructor.nameArabic" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="cit.courseType" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="cit.minStudent" [term]="myInput.value">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-danger">
+                      remove
+                      <i class="fa fa-minus-circle"></i>
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                      update
+                      <i class="fa fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- if products empty then display a message-->
+
+              <div *ngIf="term.courseInTermList?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                No Courses Added Yet.
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="card card-footer">
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">save</button>
+          </div>
+          <h3>{{term | json}}</h3>
+        </div>
+      </form>
     </div>
+    <!-- /.container-fluid -->
+  </div>
 </div>

@@ -1,35 +1,37 @@
-import { Course } from './course';
-import { CourseType } from './course-type.enum';
-import { Day } from './day.enum';
-import { Term } from './term';
-import { TeachingStaff } from './teaching-staff';
-import { Labs } from './labs';
+import {Course} from './course';
+import {CourseType} from './course-type.enum';
+import {Day} from './day.enum';
+import {Term} from './term';
+import {TeachingStaff} from './teaching-staff';
+import {Labs} from './labs';
 
 
 export class CourseInTerm {
 
-    id: number;
+  public id: number;
 
-    term: Term;
+  public term: Term;
 
-    course: Course;
+  public course: Course;
 
-    instructor: TeachingStaff;
+  public instructor: TeachingStaff;
 
-    lectureDay: Day;
+  public lectureDay: Day;
 
-    courseType: CourseType;
+  public lectureTime: number;
 
-    studentCnt: number;
+  public courseType: CourseType;
 
-    minStudent: number;
+  public studentCnt: number;
 
-    createTime: Date;
+  public minStudent: number;
 
-    updateTime: Date;
+  public createTime: Date;
 
-    // studentHasCourseInTerms: StudentHasCourseInTerm[];
+  public updateTime: Date;
+
+  // studentHasCourseInTerms: StudentHasCourseInTerm[];
 
 
-    labs: Labs[];
+  public labs: Labs[];
 }

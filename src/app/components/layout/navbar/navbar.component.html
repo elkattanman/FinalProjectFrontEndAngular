@@ -137,19 +137,24 @@
         </li>
         <!-- Menu Body -->
         <li class="user-body">
-          <div class="row">
+          <div class="row" *ngIf="user.getToken()">
             <div class="col-sm-4 text-center">
               <a routerLink="profile" class="btn btn-default btn-flat">Profile</a>
             </div>
             <div class="col-sm-4 text-center">
             </div>
             <div class="col-xs-4 text-center">
-              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+              <a class="btn btn-default btn-flat" onclick="window.sessionStorage.clear(); location.reload()">log out</a>
+            </div>
+          </div>
+          <div class="row" *ngIf="!user.getToken()">
+            <div class="col-md-4 text-center">
+              <a class="btn btn-default btn-flat" routerLink="/login">SignIn</a>
             </div>
           </div>
           <!-- /.row -->
         </li>
-        
+
       </ul>
     </li>
 

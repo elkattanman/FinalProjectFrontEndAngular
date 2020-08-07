@@ -5,34 +5,34 @@ import { Program } from './program';
 export class Course {
 
     constructor(
-        code: string,
+        public code: string,
 
-        nameEnglish: string,
+        public nameEnglish: string,
 
-        nameArabic: string,
+        public nameArabic: string,
 
-        hours: number,
+        public hours: number,
 
-        lecHours: number,
+        public lecHours: number,
 
-        labHours: number,
+        public labHours: number,
 
 
-        description: number,
+        public description: number,
 
-        program: Program,
+        public program: Program,
 
-        preCourse: Course,
+        public preCourse: Course,
 
-        childern: Course[],
+        public childern: Course[],
 
-        createTime: Date,
+        public createTime: Date,
 
-        updateTime: Date,
+        public updateTime: Date,
 
-        courseInTermList: CourseInTerm[],
+        public courseInTermList: CourseInTerm[],
 
-        departments: Department
+        public departments: Department
     ){}
 
 }
