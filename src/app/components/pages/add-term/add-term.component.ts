@@ -130,7 +130,7 @@ export class AddTermComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log(this.term);
+    console.log(JSON.stringify(this.term));
     this.termService.save(this.term).subscribe(
       data=>{
         console.log(data);
